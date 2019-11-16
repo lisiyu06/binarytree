@@ -49,8 +49,39 @@ public class BinaryTree {
             return;
         }
         // 访问就用 打印 来表示
-        System.out.println(root.val);
+        System.out.print(root.val);
         prevOrder(root.left);
         prevOrder(root.right);
     }
+
+    // 中序遍历
+    public static void inOrder(Node root) {
+        // 先遍历左子树，再访问根节点，再遍历右子树
+        if (root == null) {
+            return;
+        }
+        inOrder(root.left);
+        System.out.print(root.val);
+        inOrder(root.right);
+    }
+
+    // 后序遍历
+    public static void postOrder(Node root) {
+        if (root == null) {
+            return;
+        }
+        postOrder(root.left);
+        postOrder(root.right);
+        System.out.print(root.val);
+    }
+
+    public static void main(String[] args) {
+        root = build();
+        prevOrder(root);
+        System.out.println();
+        inOrder(root);
+        System.out.println();
+        postOrder(root);
+    }
+
 }

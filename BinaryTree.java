@@ -75,6 +75,25 @@ public class BinaryTree {
         System.out.print(root.val);
     }
 
+    // 求结点个数
+//    public static int treeSize = 0;
+//    public static void size1(Node root) {
+//        if (root == null) {
+//            return;
+//        }
+//        treeSize++;
+//        size1(root.left);
+//        size1(root.right);
+//    }
+    public static int size(Node root) {
+        if (root == null) {
+            return 0;
+        }
+        // 这棵树的结点个数可以理解成：
+        // 1 + 左子树的结点个数 + 右子树的结点个数
+        return 1 + size(root.left) + size(root.right);
+    }
+
     public static void main(String[] args) {
         root = build();
         prevOrder(root);
@@ -82,6 +101,8 @@ public class BinaryTree {
         inOrder(root);
         System.out.println();
         postOrder(root);
+        System.out.println();
+        System.out.println(size(root));
     }
 
 }

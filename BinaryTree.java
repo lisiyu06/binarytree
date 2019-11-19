@@ -94,6 +94,46 @@ public class BinaryTree {
         return 1 + size(root.left) + size(root.right);
     }
 
+    // 求叶子结点个数
+    // 借助遍历的方式，访问结点的时候，先判断是不是叶子结点，如果是，就 ++
+//    public static int leafSize = 0;
+//    public static void getLeafSize(Node root) {
+//        if (root == null) {
+//            return;
+//        }
+//        if (root.left == null && root.right == null) {
+//            // 此时 root 就是叶子结点
+//            leafSize++;
+//        }
+//        getLeafSize(root.left);
+//        getLeafSize(root.right);
+//    }
+    public static int getLeafSize(Node root) {
+        if (root == null) {
+            return 0;
+        }
+        if (root.left == null && root.right == null) {
+            return 1;
+        }
+        // 求 root 有多少个叶子结点
+        return getLeafSize(root.left) + getLeafSize(root.right);
+    }
+
+    // 求第 k 层的结点个数
+    public static int getKLevelSize(Node root, int k) {
+        // 特殊情况
+        if (root == null || k < 1) {
+            return 0;
+        }
+        if (k == 1) {
+            return 1;
+        }
+        // 求第 k 层的结点个数
+        return getKLevelSize(root.left, k - 1)
+                + getKLevelSize(root.right, k - 1);
+    }
+
+
     public static void main(String[] args) {
         root = build();
         prevOrder(root);
@@ -103,6 +143,8 @@ public class BinaryTree {
         postOrder(root);
         System.out.println();
         System.out.println(size(root));
+        System.out.println(getLeafSize(root));
+        System.out.println(getKLevelSize(root, 4));
     }
 
 }

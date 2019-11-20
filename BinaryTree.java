@@ -2,6 +2,7 @@ package homework20;
 
 import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
+
 /**
  * Author: lisiyu
  * Created: 2019/11/15
@@ -129,10 +130,28 @@ public class BinaryTree {
             return 1;
         }
         // 求第 k 层的结点个数
+        // 递归找左子树和递归找右子树
         return getKLevelSize(root.left, k - 1)
                 + getKLevelSize(root.right, k - 1);
     }
 
+    // 比较一下当前的根节点是不是要找的元素
+    // 递归找左子树和递归找右子树
+    public static Node find(Node root, char toFind) {
+        if (root == null) {
+            return null;
+        }
+        // 当前节点是不是要找的结点
+        if (root.val == toFind) {
+            return root;
+        }
+        // 递归找左子树
+        Node ret = find(root.left, toFind);
+        if (ret != null) {
+            return ret;
+        }
+        return find(root.right, toFind);
+    }
 
     public static void main(String[] args) {
         root = build();
@@ -145,6 +164,7 @@ public class BinaryTree {
         System.out.println(size(root));
         System.out.println(getLeafSize(root));
         System.out.println(getKLevelSize(root, 4));
+        System.out.println(find(root, 'E'));
     }
 
 }

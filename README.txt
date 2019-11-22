@@ -17,3 +17,7 @@
 
    （3）二叉树的后序遍历 --- 力扣145
         public List<Integer> postorderTraversal(TreeNode root)
+    
+   （4）求结点个数
+   （5）求叶子结点个数
+   （6）求第 k 层的结点个数
